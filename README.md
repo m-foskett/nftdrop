@@ -9,12 +9,11 @@ This is a NFT Marketplace application made using Next.JS, Typescript, Sanity.io,
 - [Run Deployed Version](#running-run-deployed-version)
 
 ## :computer: Screenshots
-<!-- <div style="display: inline_block" align="center"><br>
- <img align="center" alt="Home Screen"  width="200" src="/assets/home_screen.jpg">
- <img align="center" alt="Restaurant Screen"  width="200" src="/assets/restaurant_screen.jpg">
- <img align="center" alt="Basket Screen"  width="200" src="/assets/basket_screen.jpg">
- <img align="center" alt="Delivery Screen"  width="200" src="/assets/delivery_screen.jpg">
-</div> -->
+<div style="display: inline_block" align="center"><br>
+ <img align="center" alt="Home Page"  width="400" src="/assets/home_page.PNG">
+ <img align="center" alt="Collection Page"  width="200" src="/assets/collection-page.PNG">
+ <img align="center" alt="NFT Modal"  width="200" src="/assets/nft-modal-revealed.PNG">
+</div>
 
 ## :books: Tech-Stack
 Below is a non-exhaustive list of the technologies utilised within this project.
