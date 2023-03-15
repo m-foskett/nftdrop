@@ -21,7 +21,7 @@ Below is a non-exhaustive list of the technologies utilised within this project.
 | Front End | Back End | Libraries |
 | ----------- | ----------- | ----------- |
 | Next.JS | Sanity.io | Toast |
-| Tailwind CSS | MetaMask |      |
+| Tailwind CSS | MetaMask | Framer Motion |
 |  | Thirdweb |     |
 
 ## :running: Run Deployed Version
