@@ -1,27 +1,32 @@
-# Next.js + Tailwind CSS Example
+# nft-marketplace
+This is a NFT Marketplace application made using Next.JS, Typescript, Sanity.io, MetaMask and Thirdweb.
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v3.2)](https://tailwindcss.com/blog/tailwindcss-v3-2) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+![Maintenance](https://img.shields.io/maintenance/yes/2023)
 
-## Deploy your own
+## :scroll: Table of Contents
+- [Screenshots](#computer-screenshots)
+- [Tech Stack](#books-tech-stack)
+- [Run Deployed Version](#running-run-deployed-version)
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
+## :computer: Screenshots
+<!-- <div style="display: inline_block" align="center"><br>
+ <img align="center" alt="Home Screen"  width="200" src="/assets/home_screen.jpg">
+ <img align="center" alt="Restaurant Screen"  width="200" src="/assets/restaurant_screen.jpg">
+ <img align="center" alt="Basket Screen"  width="200" src="/assets/basket_screen.jpg">
+ <img align="center" alt="Delivery Screen"  width="200" src="/assets/delivery_screen.jpg">
+</div> -->
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+## :books: Tech-Stack
+Below is a non-exhaustive list of the technologies utilised within this project.
+| Front End | Back End | Libraries |
+| ----------- | ----------- | ----------- |
+| Next.JS | Sanity.io | Toast |
+| Tailwind CSS | MetaMask | Framer Motion |
+|  | Thirdweb |     |
 
-## How to use
+## :running: Run Deployed Version
+### :bangbang: Prerequisite
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
-
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-```
-
-```bash
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-```
-
-```bash
-pnpm create next-app --example with-tailwindcss with-tailwindcss-app
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+<!-- <div style="display: inline_block" align="center"><br>
+ <img align="center" alt="QR Code" src="/assets/qr_code.PNG">
+</div> -->
