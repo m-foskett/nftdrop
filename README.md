@@ -18,11 +18,11 @@ This is a NFT Marketplace application made using Next.JS, Typescript, Sanity.io,
 
 ## :books: Tech-Stack
 Below is a non-exhaustive list of the technologies utilised within this project.
-| Front End | Back End |
-| ----------- | ----------- |
-| Next.JS | Sanity.io |
-| Tailwind CSS | MetaMask |
-|  | Thirdweb |
+| Front End | Back End | Libraries |
+| ----------- | ----------- | ----------- |
+| Next.JS | Sanity.io | Toast |
+| Tailwind CSS | MetaMask |      |
+|  | Thirdweb |     |
 
 ## :running: Run Deployed Version
 ### :bangbang: Prerequisite
