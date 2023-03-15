@@ -26,8 +26,5 @@ Below is a non-exhaustive list of the technologies utilised within this project.
 |  | Thirdweb |     |
 
 ## :running: Run Deployed Version
-### :bangbang: Prerequisite
-
-<!-- <div style="display: inline_block" align="center"><br>
- <img align="center" alt="QR Code" src="/assets/qr_code.PNG">
-</div> -->
+Deployed using Vercel at this domain:
+https://nftdrop-delta.vercel.app/
