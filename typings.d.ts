@@ -28,3 +28,7 @@ export interface Collection {
     mainImage: Image,
     previewImage: Image,
 }
+
+export interface Attribute {
+    [x: string]: string;
+}

@@ -1,5 +1,6 @@
 import * as React from "react";
 import { motion } from "framer-motion";
+import { Attribute } from "../typings";
 
 // Framer Motion Animation Parameters
 const variants = {
@@ -19,19 +20,23 @@ const variants = {
   }
 };
 
-export const MenuItem = ({ property }) => {
+type ListItemProps = {
+  attribute: Attribute;
+}
+
+export const ListItem = ({ attribute }: ListItemProps) => {
 
   return (
     // Framer Motion List Item using the custom animation parameters
-    // Displays the Minted NFT Trait/Value pair
+    // Displays the Minted NFT Trait/Value pairs
     <motion.li
       variants={variants}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}
-      key={property.value}
-      className=' text-white text-lg uppercase '
+      key={attribute?.value}
+      className=' text-primary-950 text-lg uppercase font-bold'
     >
-        {property.trait_type + ": " + property.value}
+        {attribute?.trait_type + ": "}<span className=" text-primary-50 text-lg uppercase font-semibold"> {attribute?.value}</span>
     </motion.li>
   );
 };

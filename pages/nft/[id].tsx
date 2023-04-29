@@ -8,20 +8,22 @@ import { Collection } from '../../typings';
 // Thirdweb Smart Contract Hook Imports
 import { ConnectWallet, useAddress, useContract, } from "@thirdweb-dev/react";
 // Thirdweb NFT Type Import
-import { NFT } from '@thirdweb-dev/sdk';
+import { NFT, NFTDrop } from '@thirdweb-dev/sdk';
 // BigNumber Type Import
 import { BigNumber } from 'ethers';
 // Toast Pop Up Import
 import toast, { Toaster } from 'react-hot-toast';
 // Custom Functional Component Import: NFTModal
 import NFTModal from '../../components/NFTModal';
+import colours from '../../config/colours';
 
 // Custom Interface for NFT Collection
-interface Props {
+interface NFTDropPageProps {
   collection: Collection,
 }
 
-function NFTDropPage({collection}: Props) {
+function NFTDropPage({collection}: NFTDropPageProps) {
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // State Variables
   const [claimedSupply, setClaimedSupply] = useState<number>();
   const [totalSupply, setTotalSupply] = useState<BigNumber>();
@@ -29,12 +31,14 @@ function NFTDropPage({collection}: Props) {
   const [loading, setLoading] = useState<boolean>(true);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [mintedNFT, setMintedNFT] = useState<NFT>();
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // Get the NFT Drop Contract
-  const nftDrop = useContract(collection.address, "nft-drop").contract;
+  const nftDrop = useContract(collection.address, "nft-drop").contract as NFTDrop;
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // Authentication Hook: Get wallet address
   const address = useAddress();
-
-  // Test for acquisition of the NFT Drop smart contract
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  // Get NFT Mint Price in ETH
   useEffect(() => {
     // If NFT Drop smart contract is null, return
     if (!nftDrop) return;
@@ -49,8 +53,8 @@ function NFTDropPage({collection}: Props) {
     // fetchPrice call
     fetchPrice();
   }, [nftDrop])
-
-  // Test for acquisition of the NFT Drop smart contract
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  // Get NFT Drop smart contract data
   useEffect(() => {
     // If NFT Drop smart contract is null, return
       if (!nftDrop) return;
@@ -71,7 +75,7 @@ function NFTDropPage({collection}: Props) {
       // fetchNFTDropData call
       fetchNFTDropData();
   }, [nftDrop])
-
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // Custom Function: mintNFT
   const mintNFT = () => {
     // Check for acquisition of the smart contract and whether the user's wallet is connected,
@@ -89,13 +93,13 @@ function NFTDropPage({collection}: Props) {
         padding: '20px',
       }
     });
-    const quantity = 1; // quantity of NFTs to claim in transaction
+    // Quantity of NFTs to claim in transaction
+    const quantity = 1;
     // Claim the minted NFT to the connected wallet address
-    nftDrop?.claimTo(address, quantity).then(async (tx) => {
+    nftDrop.claimTo(address, quantity).then(async (tx) => {
       const receipt = tx[0].receipt // the transaction receipt
-      const claimedTokenId = tx[0].id // the id of the NFT claimed
-      const claimedNFT = await tx[0].data() // (optional) get the claimed NFT metadata
-
+      const claimedTokenId: BigNumber = tx[0].id // the id of the NFT claimed
+      const claimedNFT: NFT = await tx[0].data() // (optional) get the claimed NFT metadata
       // Toast Pop Up to indicate that the NFT was successfully minted
       toast('Successful Mint!', {
         duration: 8000,
@@ -134,7 +138,7 @@ function NFTDropPage({collection}: Props) {
       toast.dismiss(notification);
     })
   }
-
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   return (
     <>
       {/* Base Container */}
@@ -142,10 +146,10 @@ function NFTDropPage({collection}: Props) {
         {/* Toaster Component to allow for Toast Pop Ups */}
         <Toaster />
         {/* Left-Side of Page */}
-        <div className='lg:col-span-4 bg-gradient-to-br from-cyan-800 to-rose-500'>
+        <div className='lg:col-span-4 bg-gradient-to-br from-primary-950 to-primary-400'>
           <div className='flex flex-col items-center justify-center py-2 lg:min-h-screen '>
             {/* Collection Image Border */}
-            <div className='bg-gradient-to-br from-yellow-400 to-purple-600 p-2 rounded-xl'>
+            <div className='bg-gradient-to-br from-primary-200 to-primary-900 p-2 rounded-xl'>
               {/* Collection Image */}
               <img className='w-44 rounded-xl object-cover lg:h-96 lg:w-72 ' src={urlFor(collection.previewImage).url()} alt=""  />
             </div>
@@ -154,42 +158,37 @@ function NFTDropPage({collection}: Props) {
               {/* Collection Title */}
               <h1 className='text-4xl font-bold text-white'>{collection.nftCollectionName}</h1>
               {/* Collection Description */}
-              <h2 className='text-xl text-gray-300'>{collection.description}</h2>
+              <h2 className='text-xl text-primary-100'>{collection.description}</h2>
             </div>
           </div>
         </div>
         {/* Right-Side of Page */}
-        <div className='flex flex-1 flex-col p-12 lg:col-span-6'>
+        <div className='flex flex-1 flex-col p-12 lg:col-span-6 bg-primary-50'>
           {/* Header */}
           <header className='flex items-center justify-between'>
             {/* Link to Home Page */}
             <Link href={`/`}>
-              <h1 className='w-52 cursor-pointer text-xl font-extralight sm:w-80'>The{' '}<span className='font-extrabold underline decoration-pink-600/50'>BOBSON</span>{' '}NFT Grand Exchange!</h1>
+              <h1 className='w-52 cursor-pointer text-xl font-extralight sm:w-80'><span className='text-primary-950 font-extrabold underline decoration-primary-800/50'>Bob's</span>{' '}Grand NFT Exchange</h1>
             </Link>
             {/* Connect Wallet Component from Thirdweb */}
-            <ConnectWallet accentColor="#e11d48" colorMode='light'/>
+            <ConnectWallet accentColor={colours.primary[950]} colorMode='light'/>
           </header>
           {/* Page Rule */}
-          <hr className='my-2 border'/>
+          <hr className='my-2 border border-primary-200'/>
           {/* Content Container */}
           <div className='mt-10 flex flex-1 flex-col items-center space-y-6 text-center lg:space-y-0 lg:justify-center'>
             {/* Collection Display Image */}
-            <img className='w-80 object-cover pb-10 lg:h-40' src={urlFor(collection.mainImage).url()} alt="" />
+            <img className='w-80 object-cover pb-10 ' src={urlFor(collection.mainImage).url()} alt="" />
             {/* Collection Title */}
-            <h1 className='text-3xl font-bold lg:text-5xl lg:font-extrabold'>{collection.title}</h1>
+            <h1 className='text-primary-950 text-3xl font-bold lg:text-5xl lg:font-extrabold'>{collection.title}</h1>
             {/* If the loading condition is set to true */}
             {loading ? (
               // Show loading message
-              <p className='text-green-500 pt-2 text-xl animate-pulse'>Loading NFT Supply Count...</p>
+              <p className='text-primary-500 pt-10 text-2xl animate-pulse'>Loading NFT Supply Count...</p>
             // If the loading condition is set to false
               ) : (
                 // Display the amount of claimed NFTs out of the total supply
-              <p className='text-green-500 pt-2 text-xl'>{claimedSupply == null ? "X" : claimedSupply} / {totalSupply?.toString()} NFTs claimed!</p>
-            )}
-            {/* If loading */}
-            {loading && (
-              // Display buffering animation
-              <img className='h-80 w-80 object-contain' src="https://cdn.hackernoon.com/images/0*4Gzjgh9Y7Gu8KEtZ.gif" alt="" />
+              <p className='text-primary-500 pt-10 text-2xl'>{claimedSupply == null ? "X" : claimedSupply} / {totalSupply?.toString()} NFTs claimed!</p>
             )}
           </div>
           {/* Mint Button */}
@@ -198,7 +197,7 @@ function NFTDropPage({collection}: Props) {
           {/* - user wallet is not connected */}
           {/* - the loading condition is set */}
           {/* - all of the NFTs have already been claimed */}
-          <button onClick={mintNFT} disabled={loading || !address || claimedSupply === totalSupply?.toNumber()} className='h-16 bg-red-600 w-full text-white rounded-full mt-10 font-bold disabled:bg-gray-400'>
+          <button onClick={mintNFT} disabled={loading || !address || claimedSupply === totalSupply?.toNumber()} className='h-16 bg-primary-950 w-full text-white text-lg rounded-full mt-10 font-bold disabled:bg-gray-400'>
             {/* If loading, display loading */}
             {loading ? (
               <>Loading</>
@@ -216,16 +215,22 @@ function NFTDropPage({collection}: Props) {
         </div>
       </div>
       {/* Custom Functional Component: NFTModal */}
-      <NFTModal isVisible={showModal} onClose={() => setShowModal(false)} mintedNFT={mintedNFT} />
+      {(showModal && mintedNFT)? (
+        <NFTModal onClose={() => setShowModal(false)} mintedNFT={mintedNFT} />
+      ): (
+        null
+      )}
+
     </>
-  )
+  );
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 }
 
 export default NFTDropPage
 
 // Asynchronous call with ServerSide Rendering
 export const getServerSideProps: GetServerSideProps = async ({params}) => {
-  // GROQ Query to gather the collections and their details
+  // GROQ Query to gather the collection and its details
   const query =
   `*[_type == "collection" && slug.current == $id][0]{
     _id,

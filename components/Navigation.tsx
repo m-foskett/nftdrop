@@ -1,6 +1,7 @@
 import * as React from "react";
 import { motion } from "framer-motion";
-import { MenuItem } from "./MenuItem";
+import { ListItem } from "./ListItem";
+import { Attribute } from "../typings";
 
 // Framer Motion Animation Parameters
 const variants = {
@@ -12,12 +13,20 @@ const variants = {
   }
 };
 
-export const Navigation = ({attributes}) => (
-  // Framer Motion List holding the Minted NFT Traits
-  <motion.ul variants={variants}>
-    {/* Map the Minted NFT attributes to the custom component: MenuItem */}
-    {attributes.map( (property) => (
-      <MenuItem property={property} key={property.value} />
-    ))}
-  </motion.ul>
-);
+type NavigationProps = {
+  attributes: Attribute[];
+}
+
+export const Navigation = ({attributes}: NavigationProps) => {
+
+    return (
+      // Framer Motion List displaying the Minted NFT Traits
+      <motion.ul
+        variants={variants}>
+        {/* Map the Minted NFT attributes to the custom component: MenuItem */}
+        {attributes.map( (attribute) => (
+          <ListItem attribute={attribute} key={attribute.value}/>
+        ))}
+      </motion.ul>
+    )
+};
