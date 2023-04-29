@@ -2,6 +2,9 @@
 This is a NFT Marketplace application made using Next.JS, Typescript, Sanity.io, MetaMask and Thirdweb.
 
 ![Maintenance](https://img.shields.io/maintenance/yes/2023)
+![Website](https://img.shields.io/website?url=https%3A%2F%2Fnftdrop-delta.vercel.app%2F)
+![GitHub top language](https://img.shields.io/github/languages/top/m-foskett/nftdrop)
+![GitHub last commit](https://img.shields.io/github/last-commit/m-foskett/nftdrop)
 
 ## :scroll: Table of Contents
 - [Screenshots](#computer-screenshots)
