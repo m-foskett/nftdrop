@@ -1,48 +1,51 @@
-import type { GetServerSideProps, NextPage } from 'next'
+import type { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import Link from 'next/link';
 // Sanity and Custom Image Handler Import
 import { sanityClient, urlFor } from '../sanity';
-// Custom Typings Import
 import { Collection } from '../typings';
 
-// Custom Interface for NFT Collection
-interface Props {
+interface HomeProps {
   collections: Collection[],
 }
 
-const Home = ({ collections }: Props) => {
+const Home = ({ collections }: HomeProps) => {
   return (
-    <div className="max-w-7xl mx-auto flex flex-col min-h-screen py-20 px-10 2xl:px-0">
-      <Head>
-        <title>NFT Drop</title>
-      </Head>
-      {/* Home Page Title */}
-      <h1 className='mb-10 text-4xl font-extralight'>The{' '}<span className='font-extrabold underline decoration-pink-600/50'>BOBSON</span>{' '}NFT Grand Exchange!</h1>
-      {/* Main Body */}
-      <main className='bg-slate-100 p-10 shadow-xl shadow-rose-400/20'>
-        {/* Collection Container */}
-        <div className='grid space-x-3 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4'>
-          {/* Map all elements of the queried collections into a display component that links to the collection page  */}
-          {collections.map(collection => (
-            // Link to collection page
-            <Link href={`/nft/${collection.slug.current}`}>
-              {/* Internal Container */}
-              <div className='flex flex-col items-center cursor-pointer transition-all duration-200 hover:scale-105'>
-                {/* Collection Image */}
-                <img className='h-96 w-60 rounded-2xl object-cover' src={urlFor(collection.mainImage).url()} alt="" />
-                {/* Collection Details */}
-                <div className='p-5'>
-                  {/* Collection Title */}
-                  <h2 className='text-3xl'>{collection.title}</h2>
-                  {/* Collection Description */}
-                  <p className='mt-2 text-sm text-gray-400'>{collection.description}</p>
+    // Base Container
+    <div className="bg-primary-100">
+      {/* Content Container */}
+      <div className='flex flex-col max-w-7xl mx-auto py-20 px-10 2xl:px-0 min-h-screen'>
+        {/* Title */}
+        <Head>
+          <title>Bob's Grand NFT Exchange</title>
+        </Head>
+        {/* Home Page Title */}
+        <h1 className='mb-10 text-4xl font-extralight'><span className='text-primary-950 font-extrabold underline decoration-primary-800/50'>Bob's</span>{' '}Grand NFT Exchange</h1>
+        {/* Main Body */}
+        <main className='bg-primary-50 p-10 shadow-xl shadow-primary-500/20'>
+          {/* Collection Container */}
+          <div className='grid space-x-3 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4'>
+            {/* Map all elements of the queried collections from Sanity into a display component that links to the collection page  */}
+            {collections.map(collection => (
+              // Link to collection page
+              <Link href={`/nft/${collection.slug.current}`}>
+                {/* Internal Container */}
+                <div className='flex flex-col items-center cursor-pointer transition-all duration-200 hover:scale-105'>
+                  {/* Collection Image */}
+                  <img className='h-96 w-60 rounded-2xl object-cover' src={urlFor(collection.mainImage).url()} alt="" />
+                  {/* Collection Details */}
+                  <div className='p-5'>
+                    {/* Collection Title */}
+                    <h2 className='text-3xl text-primary-950'>{collection.title}</h2>
+                    {/* Collection Description */}
+                    <p className='mt-2 text-sm text-primary-600'>{collection.description}</p>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </main>
+              </Link>
+            ))}
+          </div>
+        </main>
+      </div>
     </div>
   )
 }
